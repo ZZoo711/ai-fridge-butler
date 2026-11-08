@@ -1,0 +1,18 @@
+{
+  "name": "鲜知·冰箱大脑",
+  "short_name": "冰箱大脑",
+  "description": "基于冰箱库存的 AI 饮食管家，推荐菜谱、规划周菜单、记录营养，减少食物浪费。",
+  "lang": "zh-CN",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#1ca04a",
+  "categories": ["food", "lifestyle", "productivity"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

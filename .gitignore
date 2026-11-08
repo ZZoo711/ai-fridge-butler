@@ -1,0 +1,18 @@
+# WorkBuddy 会话内部数据：本地保留，绝不入库
+.workbuddy/
+.wbapp_*.genie
+
+# M4 参与者数据：含匿名编号与 14 天打卡记录，不公开
+m4-csv/
+*.csv
+
+# 端到端回归与排查产生的临时文件
+*_e2e_*.html
+*_debug*
+*.dump
+*.log
+
+# 依赖与系统文件
+node_modules/
+.DS_Store
+Thumbs.db

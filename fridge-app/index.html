@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鲜知 · 冰箱大脑 | 用现有食材，少浪费，每天不愁吃什么</title>
+<meta name="theme-color" content="#1ca04a">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- 图标精灵：内联 SVG，离线可用、不请求外部资源 -->
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></symbol>
+  <symbol id="i-fridge" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><path d="M5 10h14"/><path d="M8 6.5v2"/><path d="M8 13v3"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5.9 1.2.9 2.1h5.2c0-.9.3-1.6.9-2.1A6 6 0 0 0 12 3Z"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M2.5 4h2l2.2 11h10.6l2-8H6"/><circle cx="9" cy="19.5" r="1.4"/><circle cx="17.5" cy="19.5" r="1.4"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V4"/><path d="M4 20h16"/><rect x="7" y="12" width="3" height="5"/><rect x="12" y="8" width="3" height="9"/><rect x="17" y="5" width="3" height="12"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v2.2M12 19.3v2.2M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5 5 19"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M3 8h4l1.5-2.5h7L17 8h4v12H3Z"/><circle cx="12" cy="13.5" r="3.5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 9v5"/><circle cx="12" cy="17" r="0.8" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6.5V12l3.5 2"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M20 4C10 4 4 8 4 15a5 5 0 0 0 5 5c7 0 11-6 11-16Z"/><path d="M4 20c3-5 7-8 12-10"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M6.5 7l1 13h9l1-13"/><path d="M10 11v6M14 11v6"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2.5l1.9 6.1L20 10.5l-6.1 1.9L12 18.5l-1.9-6.1L4 10.5l6.1-1.9L12 2.5Z"/><path d="M19 17l.7 2.3L22 20l-2.3.7L19 23l-.7-2.3L16 20l2.3-.7L19 17Z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9L12 3Z"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 7v5h-5"/><path d="M4 17v-5h5"/><path d="M5.5 9A7.5 7.5 0 0 1 19 7.5l1 4.5"/><path d="M18.5 15A7.5 7.5 0 0 1 5 16.5L4 12"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="7.8" r="0.9" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-yen" viewBox="0 0 24 24"><path d="M6 4l6 8 6-8"/><path d="M7 13h10M7 17h10M12 12v8"/></symbol>
+  <symbol id="i-fire" viewBox="0 0 24 24"><path d="M12 21a6 6 0 0 0 6-6c0-4-3-6-3-9 0 2-2 3-2 3s0-3-2-5c0 4-5 6-5 11a6 6 0 0 0 6 6Z"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3"/></symbol>
+  <symbol id="i-reuse" viewBox="0 0 24 24"><path d="M3.5 11a8.5 8.5 0 0 1 14.7-5.6l2.3 2.1"/><path d="M20.5 3.5v4h-4"/><path d="M20.5 13a8.5 8.5 0 0 1-14.7 5.6l-2.3-2.1"/><path d="M3.5 20.5v-4h4"/></symbol>
+</svg>
+
+<div class="app">
+
+  <!-- ============ 顶栏 ============ -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark"><svg><use href="#i-leaf"></use></svg></span>
+      <div>
+        <div class="brand-name">鲜知 <span class="brand-sub">· 冰箱大脑</span></div>
+        <div class="brand-slogan">用现有食材，少浪费，每天不愁吃什么</div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <span class="demo-badge"><svg><use href="#i-info"></use></svg> 可交互演示版</span>
+      <span class="today" id="todayLabel"></span>
+    </div>
+  </header>
+
+  <!-- ============ 导航 ============ -->
+  <nav class="nav" id="nav">
+    <button class="nav-item active" data-view="home"><svg><use href="#i-home"></use></svg>概览</button>
+    <button class="nav-item" data-view="fridge"><svg><use href="#i-fridge"></use></svg>我的冰箱<span class="nav-badge" id="navFridgeBadge" title="3 天内到期或已过期的食材数"></span></button>
+    <button class="nav-item" data-view="plan"><svg><use href="#i-bulb"></use></svg>今晚吃什么</button>
+    <button class="nav-item" data-view="week"><svg><use href="#i-calendar"></use></svg>周菜单</button>
+    <button class="nav-item" data-view="leftover"><svg><use href="#i-reuse"></use></svg>剩菜利用<span class="nav-badge" id="navLeftoverBadge" title="还在建议食用期内的剩菜份数"></span></button>
+    <button class="nav-item" data-view="shop"><svg><use href="#i-cart"></use></svg>购物清单<span class="nav-badge" id="navShopBadge"></span></button>
+    <button class="nav-item" data-view="nutrition"><svg><use href="#i-fire"></use></svg>营养记录</button>
+    <button class="nav-item" data-view="stats"><svg><use href="#i-chart"></use></svg>减少浪费</button>
+    <button class="nav-item" data-view="settings"><svg><use href="#i-gear"></use></svg>设置</button>
+  </nav>
+
+  <main class="main">
+
+    <!-- ============ 概览 ============ -->
+    <section class="view active" id="view-home">
+      <div class="hero">
+        <div class="hero-text">
+          <div class="eyebrow"><svg><use href="#i-spark"></use></svg> 你的中立饮食助手</div>
+          <h1>今晚，别再纠结吃什么</h1>
+          <p>拍一拍冰箱，鲜知会优先用掉快坏的食材，给出你能马上做的家常菜。不绑定任何买菜平台，只替你着想。</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary btn-lg" data-action="generate"><svg><use href="#i-spark"></use></svg> 生成今晚菜谱</button>
+            <button class="btn btn-ghost btn-lg" data-action="open-scan"><svg><use href="#i-camera"></use></svg> 拍照录入食材</button>
+          </div>
+        </div>
+        <div class="hero-panel" id="heroPanel"></div>
+      </div>
+
+      <div id="m4CheckBar"></div>
+      <div class="stat-grid" id="homeStats"></div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-head">
+            <h2><svg><use href="#i-warn"></use></svg> 临期提醒</h2>
+            <button class="link-btn" data-view="fridge">查看全部 <svg><use href="#i-arrow"></use></svg></button>
+          </div>
+          <div id="homeUrgent"></div>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <h2><svg><use href="#i-bulb"></use></svg> 今日推荐</h2>
+            <button class="link-btn" data-action="generate">换一批 <svg><use href="#i-refresh"></use></svg></button>
+          </div>
+          <div id="homeRecommend"></div>
+        </div>
+      </div>
+
+      <div class="card flow-card">
+        <div class="card-head"><h2><svg><use href="#i-leaf"></use></svg> 每天自转一次的闭环</h2></div>
+        <div class="flow" id="flowStrip"></div>
+      </div>
+    </section>
+
+    <!-- ============ 我的冰箱 ============ -->
+    <section class="view" id="view-fridge">
+      <div class="page-head">
+        <div>
+          <h1>我的冰箱</h1>
+          <p class="muted">共 <strong id="fridgeCount">0</strong> 样食材 · 临期会优先被安排进菜谱</p>
+        </div>
+        <div class="head-actions">
+          <button class="btn btn-ghost" data-action="open-scan"><svg><use href="#i-camera"></use></svg> 拍照识别</button>
+          <button class="btn btn-primary" data-action="open-add"><svg><use href="#i-plus"></use></svg> 手动添加</button>
+        </div>
+      </div>
+      <div class="filter-bar" id="fridgeFilters"></div>
+      <div class="inventory" id="inventoryList"></div>
+    </section>
+
+    <!-- ============ 今晚吃什么 ============ -->
+    <section class="view" id="view-plan">
+      <div class="page-head">
+        <div>
+          <h1>今晚吃什么</h1>
+          <p class="muted">推荐理由全部可见：临期优先 · 库存匹配 · 口味偏好 · 你的历史评分</p>
+        </div>
+        <button class="btn btn-primary" data-action="generate"><svg><use href="#i-spark"></use></svg> 重新生成</button>
+      </div>
+      <div class="tip-bar" id="planTip"></div>
+
+      <!-- 临期食材全覆盖：逐件可见、状态可解释、可直接点开做法 -->
+      <div class="card near-card">
+        <div class="card-head">
+          <h2><svg><use href="#i-warn"></use></svg> 今晚先吃掉这些 · 临期食材全覆盖</h2>
+          <span class="muted small" id="nearCount"></span>
+        </div>
+        <div class="near-summary" id="nearSummary"></div>
+        <div class="near-grid" id="nearList"></div>
+        <div class="hint-box">已过期食材出于食品安全不会进入推荐，只提示丢弃；忌口命中的会标明原因，绝不静默消失。</div>
+      </div>
+
+      <div class="plan-section">
+        <h2><svg><use href="#i-bulb"></use></svg> 今晚推荐</h2>
+        <span class="muted small">按临期优先 · 库存匹配 · 口味偏好 · 历史评分排序</span>
+      </div>
+      <div class="recipe-grid" id="recipeGrid"></div>
+    </section>
+
+    <!-- ============ 周菜单规划 ============ -->
+    <section class="view" id="view-week">
+      <div class="page-head">
+        <div>
+          <h1>周菜单规划</h1>
+          <p class="muted">把快坏的食材排进这一周，自动生成 7 天早午晚，省心不重样</p>
+        </div>
+        <div class="head-actions">
+          <button class="btn btn-ghost" data-action="week-copy">复制本周采购</button>
+          <button class="btn btn-ghost" data-action="clear-week">清空</button>
+          <button class="btn btn-primary" data-action="gen-week"><svg><use href="#i-calendar"></use></svg> 一键生成本周菜单</button>
+        </div>
+      </div>
+      <div class="tip-bar" id="weekTip"></div>
+
+      <div class="card">
+        <div class="card-head"><h2><svg><use href="#i-calendar"></use></svg> 本周菜单</h2><span class="muted small" id="weekRange"></span></div>
+        <div class="week-grid" id="weekGrid"></div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-head"><h2><svg><use href="#i-cart"></use></svg> 本周采购清单</h2><span class="muted small" id="weekShopCount"></span></div>
+          <div id="weekShop"></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2><svg><use href="#i-chart"></use></svg> 本周营养概览</h2><span class="muted small">7 天合计 · 日均</span></div>
+          <div id="weekNutrition"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ C4 剩菜利用 ============ -->
+    <section class="view" id="view-leftover">
+      <div class="page-head">
+        <div>
+          <h1>剩菜利用</h1>
+          <p class="muted">吃剩的菜、零散边角料别急着倒 —— 给你能一次吃掉它们的改造方案</p>
+        </div>
+        <div class="head-actions">
+          <button class="btn btn-primary" data-action="open-leftover-add"><svg><use href="#i-plus"></use></svg> 登记剩菜</button>
+        </div>
+      </div>
+      <div class="tip-bar" id="reuseTip"></div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-head"><h2><svg><use href="#i-reuse"></use></svg> 我的剩菜盒</h2></div>
+          <div class="lo-quick" id="leftoverQuick"></div>
+          <div class="lo-grid" id="leftoverList"></div>
+          <div class="hint-box">熟食冷藏建议 2 天内吃完；超过建议期的会标红，并<strong>不再进入任何改造方案</strong>，只提示丢弃。这是食品安全护栏，不会为了「少浪费」就推荐你吃。</div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2><svg><use href="#i-chart"></use></svg> 少浪费小账本</h2></div>
+          <div id="reuseSummary"></div>
+          <div class="divider"></div>
+          <div class="mini-title">凑一锅 · 一次消灭多份</div>
+          <div id="reuseCoverage"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h2><svg><use href="#i-bulb"></use></svg> 再利用方案</h2><span class="muted small">按能吃掉的剩料数排序 · 复用原有推荐评分</span></div>
+        <div class="idea-grid" id="reuseIdeas"></div>
+        <div class="hint-box">闭环口径：剩菜与生鲜库存分开记，食材在第一次做菜时已扣过库存、记过营养；这里「处理掉」只移除剩菜记录，<strong>不会重复扣库存或重复记营养</strong>。</div>
+      </div>
+    </section>
+
+    <!-- ============ 购物清单 ============ -->
+    <section class="view" id="view-shop">
+      <div class="page-head">
+        <div>
+          <h1>购物清单</h1>
+          <p class="muted">只列出家里缺的东西，多道菜自动合并去重</p>
+        </div>
+        <button class="btn btn-ghost" data-action="copy-list"><svg><use href="#i-copy"></use></svg> 复制清单</button>
+      </div>
+      <div class="two-col shop-layout">
+        <div class="card">
+          <div class="card-head"><h2><svg><use href="#i-cart"></use></svg> 待买 <span class="muted" id="shopCount"></span></h2>
+            <button class="link-btn" data-action="clear-checked">清除已购</button></div>
+          <div id="shoppingList"></div>
+        </div>
+        <div class="card neutral-card">
+          <div class="card-head"><h2><svg><use href="#i-leaf"></use></svg> 平台中立</h2></div>
+          <p class="muted small">鲜知不绑定任何一家电商。复制清单后，你想在哪家买就在哪家买——这是我们和「买菜 App 里的饮食管家」最根本的区别。</p>
+          <div class="platform-list" id="platformList"></div>
+          <div class="divider"></div>
+          <div class="muted small" id="shopFrom"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 营养记录 ============ -->
+    <section class="view" id="view-nutrition">
+      <div class="page-head">
+        <div>
+          <h1>营养记录</h1>
+          <p class="muted">每天记录、每月回顾，把健康吃进数据里</p>
+        </div>
+        <div class="month-switch">
+          <button class="btn btn-sm" data-action="nut-prev">上个月</button>
+          <span class="month-label" id="nutViewMonth"></span>
+          <button class="btn btn-sm" data-action="nut-next">下个月</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h2><svg><use href="#i-fire"></use></svg> 今日摄入</h2><span class="muted small" id="nutTodayDate"></span></div>
+        <div id="nutToday"></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h2><svg><use href="#i-chart"></use></svg> 本月趋势</h2><span class="muted small">每日热量（深=已记录）</span></div>
+        <div id="nutTrend"></div>
+      </div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-head"><h2><svg><use href="#i-chart"></use></svg> 本月汇总</h2></div>
+          <div id="nutSummary"></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2><svg><use href="#i-bulb"></use></svg> 每日目标参考</h2></div>
+          <div id="nutGoal"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 减少浪费 ============ -->
+    <section class="view" id="view-stats">
+      <div class="page-head">
+        <div><h1>减少浪费</h1><p class="muted">把「少扔菜」变成看得见的数字</p></div>
+      </div>
+      <div class="stat-grid" id="statsGrid"></div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-head"><h2><svg><use href="#i-chart"></use></svg> 累计成果</h2></div>
+          <div id="statsBars"></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2><svg><use href="#i-clock"></use></svg> 做饭记录</h2></div>
+          <div id="historyList"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 设置 ============ -->
+    <section class="view" id="view-settings">
+      <div class="page-head"><div><h1>设置</h1><p class="muted">偏好会直接影响推荐排序，改完点保存即可生效</p></div></div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-head"><h2><svg><use href="#i-gear"></use></svg> 我的偏好</h2></div>
+          <div id="prefsForm"></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2><svg><use href="#i-info"></use></svg> 数据与实现说明</h2></div>
+          <div id="aboutBox"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <h2><svg><use href="#i-camera"></use></svg> 真实 AI 识别（M5 · 可选）</h2>
+          <span id="aiModeBadge"></span>
+        </div>
+        <div id="aiConfigBox"></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h2><svg><use href="#i-fridge"></use></svg> 安装到主屏（PWA · 离线可用）</h2></div>
+        <p class="muted small">把鲜知·冰箱大脑装到手机/电脑主屏，断网也能打开，像原生 App 一样全屏使用。点下方按钮即可添加；若按钮不可见，可改用浏览器菜单的「添加到主屏幕 / 安装」。</p>
+        <div class="install-row">
+          <button class="btn btn-primary" id="installBtn" data-action="install" style="display:none"><svg><use href="#i-plus"></use></svg> 安装到主屏</button>
+          <span class="muted small" id="installHint">检测到支持安装时会在此显示按钮</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h2><svg><use href="#i-chart"></use></svg> M4 冷启动验证（14 天）</h2></div>
+        <p class="muted small">每天只需回答一次「今天照着做了吗」，其余由 App 自动记录。第 14 天点下方导出 CSV 发给验证组织者，即可汇总出留存与采纳率。</p>
+        <div id="m4Box"></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h2><svg><use href="#i-fridge"></use></svg> 数据备份（换设备 / 防误删）</h2></div>
+        <p class="muted small">所有数据只存在这台设备的浏览器里。导出一份 JSON 留底，换手机、清缓存或误删后即可完整恢复——包括 M4 的 14 天打卡记录。</p>
+        <div id="backupBox"></div>
+        <input type="file" id="backupFile" accept=".json,application/json" style="display:none">
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span>鲜知 · 冰箱大脑 —— 可交互网页演示版</span>
+    <span>数据仅保存在本浏览器 localStorage，不上传任何服务器</span>
+  </footer>
+</div>
+
+<!-- 模态框 / 轻提示挂载点 -->
+<div id="modalRoot"></div>
+<div id="toastRoot" class="toast-root"></div>
+
+<!-- 经典脚本按顺序加载：避免 file:// 下 ES module 的 CORS 限制，双击即可运行 -->
+<script src="data.js"></script>
+<script src="engine.js"></script>
+<script src="ai-adapter.js"></script>
+<script src="app.js"></script>
+
+<!-- 版本自检：防止「新 index.html + 旧 app.js」错配。
+     分享站点的旧 Service Worker 可能缓存了上一版脚本，导致新按钮点了没反应。
+     构建号不一致时清掉缓存并自动重载一次（sessionStorage 保证只重载一次）。 -->
+<script>
+  var XZ_EXPECT_BUILD = '1.6.2';
+  (function () {
+    try {
+      var eng = window.XZ_ENGINE;
+      // 同时核对应用层与引擎层：只要有一份是旧缓存，就判定为版本错配
+      if (window.XZ_APP_BUILD === XZ_EXPECT_BUILD && eng && eng.BUILD === XZ_EXPECT_BUILD) return;
+      if (sessionStorage.getItem('xz-build-fix')) return;   // 已尝试过一次，避免死循环
+      sessionStorage.setItem('xz-build-fix', '1');
+      var done = function () { location.reload(); };
+      if (window.caches && caches.keys) {
+        caches.keys().then(function (ks) {
+          return Promise.all(ks.map(function (k) { return caches.delete(k); }));
+        }).then(done, done);
+      } else { done(); }
+    } catch (e) { /* 静默降级，不影响正常使用 */ }
+  })();
+</script>
+
+<!-- Service Worker：注册后支持离线打开与「添加到主屏」。仅 https/localhost 生效，file:// 下静默跳过 -->
+<script>
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function (err) {
+        console.warn('[SW] 注册失败（不影响在线使用）：', err);
+      });
+    });
+  }
+</script>
+</body>
+</html>
