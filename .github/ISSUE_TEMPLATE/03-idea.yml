@@ -1,0 +1,40 @@
+name: "功能建议"
+description: "想要什么、想解决什么问题（会先记下来，不承诺马上做）"
+title: "[建议] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        当前阶段的优先目标是**拿到 20 人 × 14 天的真实验证数据**，不是堆功能。
+        建议会先进入 backlog，等 M4 出 GO / NO-GO 之后再统一排序，见 `docs/第22-25天_分析与迭代模板.md`。
+  - type: textarea
+    id: problem
+    attributes:
+      label: 你想解决什么问题
+      description: 描述真实场景，不要只写功能名
+    validations:
+      required: true
+  - type: textarea
+    id: workaround
+    attributes:
+      label: 现在你是怎么凑合的（可留空）
+    validations:
+      required: false
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: 这个需求有多频繁
+      options:
+        - 每天都会遇到
+        - 每周几次
+        - 偶尔
+        - 只是想想
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我没有粘贴任何真实姓名、手机号、地址或 localStorage / 备份原始数据
+          required: true

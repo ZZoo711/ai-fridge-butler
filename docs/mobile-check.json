@@ -1,0 +1,209 @@
+{
+  "generatedAt": "2026-11-09T09:47:38.804Z",
+  "app": "E:\\workbuddy\\2026-11-03-23-02-05\\fridge-app",
+  "viewports": [
+    {
+      "width": 390,
+      "height": 844,
+      "views": [
+        {
+          "view": "home",
+          "overflow": 0,
+          "offenders": [],
+          "offenderCount": 0,
+          "smallTargets": 5,
+          "h1": "今晚，别再纠结吃什么",
+          "visibleCards": 3
+        },
+        {
+          "view": "fridge",
+          "overflow": 0,
+          "offenders": [],
+          "offenderCount": 0,
+          "smallTargets": 27,
+          "h1": "今晚，别再纠结吃什么",
+          "visibleCards": 0
+        },
+        {
+          "view": "plan",
+          "overflow": 0,
+          "offenders": [],
+          "offenderCount": 0,
+          "smallTargets": 40,
+          "h1": "今晚，别再纠结吃什么",
+          "visibleCards": 1
+        },
+        {
+          "view": "week",
+          "overflow": 0,
+          "offenders": [],
+          "offenderCount": 0,
+          "smallTargets": 21,
+          "h1": "今晚，别再纠结吃什么",
+          "visibleCards": 3
+        },
+        {
+          "view": "leftover",
+          "overflow": 0,
+          "offenders": [],
+          "offenderCount": 0,
+          "smallTargets": 0,
+          "h1": "今晚，别再纠结吃什么",
+          "visibleCards": 3
+        },
+        {
+          "view": "shop",
+          "overflow": 0,
+          "offenders": [],
+          "offenderCount": 0,
+          "smallTargets": 1,
+          "h1": "今晚，别再纠结吃什么",
+          "visibleCards": 2
+        },
+        {
+          "view": "nutrition",
+          "overflow": 0,
+          "offenders": [],
+          "offenderCount": 0,
+          "smallTargets": 2,
+          "h1": "今晚，别再纠结吃什么",
+          "visibleCards": 4
+        },
+        {
+          "view": "stats",
+          "overflow": 0,
+          "offenders": [],
+          "offenderCount": 0,
+          "smallTargets": 0,
+          "h1": "今晚，别再纠结吃什么",
+          "visibleCards": 2
+        },
+        {
+          "view": "settings",
+          "overflow": 0,
+          "offenders": [],
+          "offenderCount": 0,
+          "smallTargets": 8,
+          "h1": "今晚，别再纠结吃什么",
+          "visibleCards": 6
+        },
+        {
+          "view": "recipe-modal",
+          "overflow": 0,
+          "offenders": [],
+          "offenderCount": 0,
+          "smallTargets": 41,
+          "h1": "今晚，别再纠结吃什么",
+          "visibleCards": 1
+        }
+      ],
+      "screenshots": [
+        "01-home.png",
+        "02-fridge.png",
+        "03-plan.png",
+        "04-week.png",
+        "05-leftover.png",
+        "06-shop.png",
+        "07-nutrition.png",
+        "08-stats.png",
+        "09-settings.png",
+        "10-recipe-modal.png",
+        "11-m4-card.png"
+      ]
+    },
+    {
+      "width": 360,
+      "height": 740,
+      "views": [
+        {
+          "view": "home",
+          "overflow": 0,
+          "offenders": [],
+          "offenderCount": 0,
+          "smallTargets": 5,
+          "h1": "今晚，别再纠结吃什么",
+          "visibleCards": 3
+        },
+        {
+          "view": "fridge",
+          "overflow": 0,
+          "offenders": [],
+          "offenderCount": 0,
+          "smallTargets": 27,
+          "h1": "今晚，别再纠结吃什么",
+          "visibleCards": 0
+        },
+        {
+          "view": "plan",
+          "overflow": 0,
+          "offenders": [],
+          "offenderCount": 0,
+          "smallTargets": 40,
+          "h1": "今晚，别再纠结吃什么",
+          "visibleCards": 1
+        },
+        {
+          "view": "week",
+          "overflow": 0,
+          "offenders": [],
+          "offenderCount": 0,
+          "smallTargets": 21,
+          "h1": "今晚，别再纠结吃什么",
+          "visibleCards": 3
+        },
+        {
+          "view": "leftover",
+          "overflow": 0,
+          "offenders": [],
+          "offenderCount": 0,
+          "smallTargets": 0,
+          "h1": "今晚，别再纠结吃什么",
+          "visibleCards": 3
+        },
+        {
+          "view": "shop",
+          "overflow": 0,
+          "offenders": [],
+          "offenderCount": 0,
+          "smallTargets": 1,
+          "h1": "今晚，别再纠结吃什么",
+          "visibleCards": 2
+        },
+        {
+          "view": "nutrition",
+          "overflow": 0,
+          "offenders": [],
+          "offenderCount": 0,
+          "smallTargets": 2,
+          "h1": "今晚，别再纠结吃什么",
+          "visibleCards": 4
+        },
+        {
+          "view": "stats",
+          "overflow": 0,
+          "offenders": [],
+          "offenderCount": 0,
+          "smallTargets": 0,
+          "h1": "今晚，别再纠结吃什么",
+          "visibleCards": 2
+        },
+        {
+          "view": "settings",
+          "overflow": 0,
+          "offenders": [],
+          "offenderCount": 0,
+          "smallTargets": 8,
+          "h1": "今晚，别再纠结吃什么",
+          "visibleCards": 6
+        }
+      ]
+    }
+  ],
+  "consoleErrors": [],
+  "appVersion": {
+    "build": "",
+    "navCount": 9,
+    "recipeCount": 6,
+    "m4Visible": true
+  }
+}

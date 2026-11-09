@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 不知道从哪开始？先看 30 秒上手
+    url: https://github.com/ZZoo711/ai-fridge-butler#readme
+    about: 在线体验链接、本地只需哪些文件、验证状态与反馈方式都写在 README 开头。
+  - name: 参加 M4 测试的日常反馈
+    url: https://github.com/ZZoo711/ai-fridge-butler/blob/main/FEEDBACK.md
+    about: 验证期请勿用 Issue 反馈日常体验，请先看这里的纪律说明。

@@ -1,0 +1,54 @@
+name: "体验反馈"
+description: "用了之后觉得哪里别扭、没看懂、不顺手 —— 不需要是 bug"
+title: "[体验反馈] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        谢谢！这个项目目前**没有真实使用数据**，一条真实感受比一句夸奖更有价值。
+        请勿粘贴姓名、手机号、住址，或 `localStorage` / 备份 JSON 的原始内容。
+        如果你正在参加 20 人 × 14 天测试，请只用 App 内打卡反馈，不要用这个表单。
+  - type: dropdown
+    id: scene
+    attributes:
+      label: 发生在哪个环节
+      options:
+        - 打开链接 / 安装到主屏
+        - 录入冰箱食材
+        - 看「今晚吃什么」推荐
+        - 点开菜谱 / 标记「我做了」
+        - 周菜单 / 采购清单
+        - 剩菜利用
+        - 营养 / 统计
+        - 设置 / 数据备份
+        - 第一次进来，整体看不懂
+        - 其他
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: 设备与浏览器（可留空）
+      placeholder: 例如：iPhone 14 / Safari 17，或 Windows / Chrome
+    validations:
+      required: false
+  - type: textarea
+    id: feeling
+    attributes:
+      label: 具体是什么感受 / 发生了什么
+      description: 越具体越好，例如「我以为点这里会加食材，结果跳去了设置」
+    validations:
+      required: true
+  - type: textarea
+    id: expectation
+    attributes:
+      label: 你本来想做什么、期望是什么（可留空）
+    validations:
+      required: false
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我没有粘贴任何真实姓名、手机号、地址或 localStorage / 备份原始数据
+          required: true
